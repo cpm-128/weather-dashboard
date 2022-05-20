@@ -1,29 +1,29 @@
 var apiKey = "943c2d97f00c4a3d1e9383c1afac4cc1";
 var userFormEl = document.querySelector("#location-form");
 var userCityNameEl = document.querySelector("#cityName");
-var userStateCodeEl = document.querySelector("#stateCode");
-var userCountryCodeEl = document.querySelector("#countryCode");
 
-// var getWeatherData = function (lat, lon) {
-//     console.log(">>> data >>>" , data, ">>> lat >>>" , lat , ">>> lon >>>");
-//     var apiWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=" + apiKey;
-//     console.log(">>> apiWeatherUrl >>>", apiWeatherUrl);
-// };
+var apiFiveDayWeatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&Appid=" + apiKey + "&units=imperial";
 
 
-var getCoordData = function(cityName, stateCode, countryCode) {
+var getWeather = function(cityName) {
     //format the api url
-    var apiCoordUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateCode + "," + countryCode + "&appid=" + apiKey;
-        console.log("apiCoordUrl >>>", apiCoordUrl)
+    var apiCurrentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&Appid=" + apiKey + "&units=imperial";
+        // console.log("current weather >>>", apiCurrentWeatherUrl);
     // make a request to the url
-    fetch(apiCoordUrl)
+    fetch(apiCurrentWeatherUrl)
         .then(function(response) {
             if(response.ok) {
+                let res = response;
                 response.json().then(function(data) {
-                var lat = data.lat;
-                var lon = data.lon;
-                console.log(">>> lat >>>", lat , ">>> lon >>>" , lon);
-                getWeatherData(lat, lon);
+                response.name
+                // date
+                // var for an icon representation
+                var currentTemp = data.main.temp;
+                var windspeed = data.wind.speed;
+                var humidity = data.main.humidity;
+                var currentTimeUTC = data.id;
+                var currentTimeZoneOffset = data.timezone;
+                console.log(">>>" , humidity);
             })
         }});
 };
@@ -33,16 +33,12 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     // get value from input element
     var cityName = userCityNameEl.value.trim();
-    var stateCode = userStateCodeEl.value.trim();
-    var countryCode = userCountryCodeEl.value.trim();
 
-    if (cityName, stateCode, countryCode) {
-        getCoordData(cityName, stateCode, countryCode);
+    if (cityName) {
+        getWeather(cityName);
         userCityNameEl.value = "";
-        userStateCodeEl.value = "";
-        userCountryCodeEl.value = "";
     } else {
-        alert("Please enter a city, two-digit state code (USA only), and three-digit country code.");
+        alert("Please enter a city.");
     }
 };
 
