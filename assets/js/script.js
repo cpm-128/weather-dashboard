@@ -15,10 +15,10 @@ var apiWeatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat
 // getWeatherData(lat, lon)
 
 
-var getCoordData = function() {
+var getCoordData = function(cityName, stateCode, countryCode) {
     //format the api url
     var apiCoordUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "," + stateCode + "," + countryCode + "&appid=" + apiKey;
-
+    console.log("apiCoordUrl >>>", apiCoordUrl)
     // make a request to the url
     fetch(apiCoordUrl)
         .then(function(response) {
