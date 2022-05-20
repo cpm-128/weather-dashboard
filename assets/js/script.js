@@ -17,13 +17,12 @@ var getWeather = function(cityName) {
                 response.json().then(function(data) {
                 response.name
                 // date
-                // var for an icon representation
+                var iconCode = data.weather[0].icon;
                 var currentTemp = data.main.temp;
                 var windspeed = data.wind.speed;
                 var humidity = data.main.humidity;
-                var currentTimeUTC = data.id;
-                var currentTimeZoneOffset = data.timezone;
-                console.log(">>>" , humidity);
+                var timeZoneShiftUTC = data.timezone;
+                console.log(">>>" , iconCode);
             })
         }});
 };
