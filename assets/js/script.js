@@ -4,10 +4,6 @@ var userCityNameEl = document.querySelector("#cityName");
 var userStateCodeEl = document.querySelector("#stateCode");
 var userCountryCodeEl = document.querySelector("#countryCode");
 
-// ** hardcorded placeholders
-var cityName = "Bohemia";
-var stateCode = "Ny";
-var countryCode = "USA";
 
 // ** hardcoded placeholders
 var lat = 33.44;
@@ -35,7 +31,19 @@ var getCoordData = function() {
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
-    console.log(event);
+    // get value from input element
+    var cityName = userCityNameEl.value.trim();
+    var stateCode = userStateCodeEl.value.trim();
+    var countryCode = userCountryCodeEl.value.trim();
+
+    if (cityName, stateCode, countryCode) {
+        getCoordData(cityName, stateCode, countryCode);
+        userCityNameEl.value = "";
+        userStateCodeEl.value = "";
+        userCountryCodeEl.value = "";
+    } else {
+        alert("Please enter a city, two-digit state code (USA only), and three-digit country code.");
+    }
 };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
