@@ -20,3 +20,13 @@
     font-family: var(--heading-font);
     font-weight: bold;
   }
+
+.jumbotron {
+    background-image: linear-gradient(to right, var(--accent), var(--primary));
+    color: var(--light);
+    text-align: center;
+  }
+
+  div {
+    border: 1px red solid;
+  }
