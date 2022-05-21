@@ -36,7 +36,11 @@ var getWeather = function(cityName) {
                     dateEl.textContent = localTime;
                     dateEl.setAttribute("class" , "p-2 bd-highlight");
                     currentWeatherContainerEl.append(dateEl);
-                var conditionEl
+                var conditionEl = document.createElement("img");
+                    var weatherConditionIconUrl = ("https://openweathermap.org/img/w/" + iconCode + ".png");
+                    conditionEl.setAttribute("src" , weatherConditionIconUrl);
+                    conditionEl.setAttribute("class" , "p-2 bd-highlight");
+                    currentWeatherContainerEl.append(conditionEl);
             })
         }});
 };
