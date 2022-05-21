@@ -4,6 +4,7 @@ var userCityNameEl = document.querySelector("#cityName");
 var currentWeatherContainerEl = document.querySelector("#currentWeatherHeading");
 var currentWeatherDetailsContainerEl = document.querySelector("#currentWeatherDetails");
 var forecastLength = 5;
+var forecastContainerEl = document.querySelector("#forecast");
 
 
 var getWeatherCurrent = function(cityName) {
@@ -46,13 +47,14 @@ var getWeatherCurrent = function(cityName) {
                     tempEl.textContent = "Temp: " + currentTemp + "°F";
                     currentWeatherDetailsContainerEl.append(tempEl);
                 var windEl = document.createElement("p");
-                    windEl.textContent = "Wind: " + windspeed + "mph";
+                    windEl.textContent = "Wind: " + windspeed + " mph";
                     currentWeatherDetailsContainerEl.append(windEl);
                 var humidityEl = document.createElement("p");
                     humidityEl.textContent = "Humidity: " + humidity + "%";
                     currentWeatherDetailsContainerEl.append(humidityEl);
                 var UVindexEl = document.createElement("p");
-                    UVindexEl.textContent = "Nobody knows";
+                    UVindexEl.textContent = "UV Index: Nobody knows";
+                    currentWeatherDetailsContainerEl.append(UVindexEl);
             })
         }})
 };
@@ -70,11 +72,28 @@ var getWeatherForecast = function(cityName) {
                 response.json().then(function(data) {
                     response.name
                     for (var i = 0; i < forecastLength; i++) {
-                        // get the variable from the array/object for each day
-                        // append to classi so that we make a new forecast card for each day
-                        // the forcast cards should all be flex columns, may col-2 with space between
+                        var forecastCardEl = document.createElement("div");
+                            forecastCardEl.setAttribute("id" , "forecastCardEl"+i);
+                            forecastCardEl.setAttribute("class", "col-2 font-weight-bold");
+                            forecastContainerEl.append(forecastCardEl);
+                        var dateEl = document.createElement("p");
+                            dateEl.textContent = moment().add(i+1, "days").format("L");
+                            forecastCardEl.append(dateEl);
+                        var iconEl = document.createElement("img");
+                            var iconCode = data.list[i].weather[0].icon;
+                            var iconUrl = ("https://openweathermap.org/img/w/" + iconCode + ".png");
+                            iconEl.setAttribute("src" , iconUrl);
+                            forecastCardEl.append(iconEl);
+                        var tempEl = document.createElement("p");
+                            tempEl.textContent = "Temp: " + data.list[i].main.temp + "°F";
+                            forecastCardEl.append(tempEl);
+                        var windEl = document.createElement("p");
+                            windEl.textContent = "Wind: " + data.list[i].wind.speed + " mph";
+                            forecastCardEl.append(windEl);
+                        var humidityEl = document.createElement("p")
+                            humidityEl.textContent = "Humidity: " + data.list[1].main.humidity + "%";
+                            forecastCardEl.append(humidityEl);
                     };
-                    var humidity = data.list[1].main.humidity;
                 })
             }
         })
