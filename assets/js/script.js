@@ -8,6 +8,7 @@ var forecastContainerEl = document.querySelector("#forecast");
 var cities = [];
 var loadSearchButtonEl = document.querySelector("#searchHistoryList");
 var searchHistoryEl = document.querySelector("#searchHistory");
+var clearSearchHistoryEl = document.querySelector("#clearSearchHistory");
 
 
 var getWeatherCurrent = function(cityName) {
@@ -124,7 +125,7 @@ var saveSearch = function() {
     localStorage.setItem("cities", JSON.stringify(cities))
 };
 
-var loadSearch = function(loadSearch) {
+var loadSearch = function() {
     for (var i = 0; i < cities.length; i++) {
         //console.log(">>>", cities.length);
         var oldSearchEl = document.createElement("button");
@@ -137,3 +138,8 @@ var loadSearch = function(loadSearch) {
 };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+clearSearchHistoryEl.addEventListener("click", function() {
+    localStorage.clear();
+    loadSearch();
+});

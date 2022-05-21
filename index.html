@@ -32,20 +32,20 @@
         <!-- left column -->
         <div class="col-12 col-md-4">
 
-            <div class="card">
+            <div class="card col-12">
             <h3 class="card-header">Search for a city:</h3>
-            <form id="location-form" class=""card-body>
+            <form id="location-form" class="card-body">
                 <div class="form-group">
                     <input type="text" class="form-control" id="cityName" placeholder="New York">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary col-12">Submit</button>
             </form>
             </div>
 
-            <div id="searchHistory" class="row">
+            <div id="searchHistory" class="row justify-content-center">
                 <p>Previous city search. Max: 10.</p>
-                <div id="searchHistoryList" class="col-12"></div>
-                <button class="btn btn-primary col-12">Clear Search History</button>
+                <div id="searchHistoryList" class="col-8"></div>
+                <button id="clearSearchHistory" class="btn btn-primary col-8">Clear Search History</button>
             </div>
 
         </div>
