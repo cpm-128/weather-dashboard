@@ -1,6 +1,7 @@
 var apiKey = "943c2d97f00c4a3d1e9383c1afac4cc1";
 var userFormEl = document.querySelector("#location-form");
 var userCityNameEl = document.querySelector("#cityName");
+var currentWeatherEntireEl = document.querySelector("#currentWeather");
 var currentWeatherContainerEl = document.querySelector("#currentWeatherHeading");
 var currentWeatherDetailsContainerEl = document.querySelector("#currentWeatherDetails");
 var forecastLength = 5;
@@ -12,6 +13,9 @@ var clearSearchHistoryEl = document.querySelector("#clearSearchHistory");
 
 
 var getWeatherCurrent = function(cityName) {
+
+    // style display box
+    currentWeatherEntireEl.setAttribute("class","border");
 
     // format the api url
     var apiCurrentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&Appid=" + apiKey + "&units=imperial";
@@ -78,7 +82,7 @@ var getWeatherForecast = function(cityName) {
                     for (var i = 0; i < forecastLength; i++) {
                         var forecastCardEl = document.createElement("div");
                             forecastCardEl.setAttribute("id" , "forecastCardEl"+i);
-                            forecastCardEl.setAttribute("class", "col-2 font-weight-bold");
+                            forecastCardEl.setAttribute("class", "forecastCard col-12 col-md-2 font-weight-bold");
                             forecastContainerEl.append(forecastCardEl);
                         var dateEl = document.createElement("p");
                             dateEl.textContent = moment().add(i+1, "days").format("L");
@@ -130,7 +134,7 @@ var loadSearch = function() {
         //console.log(">>>", cities.length);
         var oldSearchEl = document.createElement("button");
             oldSearchEl.textContent = cities[i].cityName;
-            oldSearchEl.setAttribute("class" , "d-flex w-100 btn-light border p-2");
+            oldSearchEl.setAttribute("class" , "d-flex w-100 btn border p-2 historyBtn");
             oldSearchEl.setAttribute("type" , "submit");
             loadSearchButtonEl.append(oldSearchEl);
             // the button needs to have the cityName input

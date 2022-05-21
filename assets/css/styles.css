@@ -10,23 +10,70 @@
     --paragraph-font: Roboto, Arial, serif;
   }
 
-  body {
-    font-family: var(--paragraph-font);
-    /* font-size: 16px;
-    line-height: 1; */
-  }
+body {
+  font-family: var(--paragraph-font);
+  /* font-size: 16px;
+  line-height: 1; */
+}
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font);
-    font-weight: bold;
-  }
+main {
+  margin: 0 20px;
+}
+
+ h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: bold;
+ }
 
 .jumbotron {
-    background-image: linear-gradient(to right, var(--accent), var(--primary));
-    color: var(--light);
-    text-align: center;
-  }
+  background-image: linear-gradient(to right, var(--accent), var(--primary));
+  color: var(--light);
+  text-align: center;
+}
 
-  div {
-    border: 1px red solid;
-  }
+.card-header {
+  background: transparent;
+  border: none;
+}
+
+.card {
+  border: none;
+}
+
+.btn {
+  background-color: var(--accent);
+  font-size: 12px;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+}
+
+.historyBtn {
+  background-color: var(--secondary);
+  margin: 5px 0;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+}
+
+#maxLimit {
+  font-size: 10px;
+}
+
+.forecastCard {
+  background-color: var(--primary);
+  color: var(--light);
+  border-radius: var(--border-radius);
+  margin: 5px;
+}
+
+.border {
+  border: 2px solid var(--secondary);
+  border-radius: var(--border-radius);
+}
+
+/* div {
+  border: 1px red solid;
+} */
