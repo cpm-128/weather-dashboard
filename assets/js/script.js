@@ -1,6 +1,7 @@
 var apiKey = "943c2d97f00c4a3d1e9383c1afac4cc1";
 var userFormEl = document.querySelector("#location-form");
 var userCityNameEl = document.querySelector("#cityName");
+var currentWeatherContainerEl = document.querySelector("#currentWeatherHeading");
 
 var apiFiveDayWeatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&Appid=" + apiKey + "&units=imperial";
 
@@ -16,13 +17,26 @@ var getWeather = function(cityName) {
                 let res = response;
                 response.json().then(function(data) {
                 response.name
-                // date
+                // var date
                 var iconCode = data.weather[0].icon;
                 var currentTemp = data.main.temp;
                 var windspeed = data.wind.speed;
                 var humidity = data.main.humidity;
                 var timeZoneShiftUTC = data.timezone;
                 console.log(">>>" , iconCode);
+
+                // append items to page
+                var cityEl = document.createElement("h2");
+                    cityEl.textContent = cityName.toUpperCase();
+                    cityEl.setAttribute("class" , "p-2 bd-highlight");
+                    currentWeatherContainerEl.append(cityEl);
+                var dateEl = document.createElement("h2");
+                    var timeZoneShiftHours = timeZoneShiftUTC/60/60;
+                        var localTime = moment.utc().utcOffset(timeZoneShiftHours).format("LLL");
+                    dateEl.textContent = localTime;
+                    dateEl.setAttribute("class" , "p-2 bd-highlight");
+                    currentWeatherContainerEl.append(dateEl);
+                var conditionEl
             })
         }});
 };
