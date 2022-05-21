@@ -5,6 +5,9 @@ var currentWeatherContainerEl = document.querySelector("#currentWeatherHeading")
 var currentWeatherDetailsContainerEl = document.querySelector("#currentWeatherDetails");
 var forecastLength = 5;
 var forecastContainerEl = document.querySelector("#forecast");
+var cities = [];
+var loadSearchButtonEl = document.querySelector("#searchHistoryList");
+var searchHistoryEl = document.querySelector("#searchHistory");
 
 
 var getWeatherCurrent = function(cityName) {
@@ -101,6 +104,7 @@ var getWeatherForecast = function(cityName) {
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
+
     // get value from input element
     var cityName = userCityNameEl.value.trim();
 
@@ -108,8 +112,27 @@ var formSubmitHandler = function(event) {
         getWeatherCurrent(cityName);
         getWeatherForecast(cityName);
         userCityNameEl.value = "";
+        cities.unshift({cityName});
     } else {
         alert("Please enter a city.");
+    }
+    saveSearch();
+    loadSearch(cityName);
+};
+
+var saveSearch = function() {
+    localStorage.setItem("cities", JSON.stringify(cities))
+};
+
+var loadSearch = function(loadSearch) {
+    for (var i = 0; i < cities.length; i++) {
+        //console.log(">>>", cities.length);
+        var oldSearchEl = document.createElement("button");
+            oldSearchEl.textContent = cities[i].cityName;
+            oldSearchEl.setAttribute("class" , "d-flex w-100 btn-light border p-2");
+            oldSearchEl.setAttribute("type" , "submit");
+            loadSearchButtonEl.append(oldSearchEl);
+            // the button needs to have the cityName input
     }
 };
 
