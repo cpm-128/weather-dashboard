@@ -1,5 +1,4 @@
 var apiKey = "943c2d97f00c4a3d1e9383c1afac4cc1";
-
 var userFormEl = document.querySelector("#location-form");
 var userCityNameEl = document.querySelector("#cityName");
 var currentWeatherEntireEl = document.querySelector("#currentWeather");
@@ -26,7 +25,7 @@ var getWeatherCurrent = function(cityName) {
 
     // format the api url
     var apiCurrentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&Appid=" + apiKey + "&units=imperial";
-    console.log(apiCurrentWeatherUrl);
+        // console.log(apiCurrentWeatherUrl);
     // make a request to the url
     fetch(apiCurrentWeatherUrl)
         .then(function(response) {
@@ -39,6 +38,9 @@ var getWeatherCurrent = function(cityName) {
                 var windspeed = data.wind.speed;
                 var humidity = data.main.humidity;
                 var timeZoneShiftUTC = data.timezone;
+                var lat = data.coord.lat;
+                var lon = data.coord.lon;
+                // console.log(">> lat" , lat , ">> lon" , lon);
 
                 // append heading items to page
                 var cityEl = document.createElement("h2");
@@ -67,9 +69,28 @@ var getWeatherCurrent = function(cityName) {
                 var humidityEl = document.createElement("p");
                     humidityEl.textContent = "Humidity: " + humidity + "%";
                     currentWeatherDetailsContainerEl.append(humidityEl);
-                var UVindexEl = document.createElement("p");
-                    UVindexEl.textContent = "UV Index: Nobody knows";
-                    currentWeatherDetailsContainerEl.append(UVindexEl);
+
+                // api for UV index
+                var apiUvIndexURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,daily,alerts&appid=" + apiKey + "&units=imperial";
+                    // console.log(apiUvIndexURL);
+                    //make a request to the url
+                    fetch(apiUvIndexURL)
+                        .then(function(response) {
+                            if(response.ok) {
+                                let res = response;
+                                response.json().then(function(data) {
+                                response.name
+                                var UVindex = data.current.uvi;
+
+                                // append this heading item to page
+                                var UVindexEl = document.createElement("p");
+                                UVindexEl.textContent = "UV Index: " + UVindex;
+                                currentWeatherDetailsContainerEl.append(UVindexEl);
+                                });
+                            };
+                        });
+                // end UV index
+
             })
         }})
 };
