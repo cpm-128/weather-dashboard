@@ -8,7 +8,7 @@ var currentWeatherDetailsContainerEl = document.querySelector("#currentWeatherDe
 var forecastLength = 5;
 var forecastContainerEl = document.querySelector("#forecast");
 var cities = [];
-var loadSearchButtonEl = document.querySelector("#searchHistoryList");
+var searchHistoryListEl = document.querySelector("#searchHistoryList");
 var searchHistoryEl = document.querySelector("#searchHistory");
 var clearSearchHistoryEl = document.querySelector("#clearSearchHistory");
 
@@ -143,13 +143,21 @@ var saveSearch = function() {
 };
 
 var loadSearch = function() {
+
+    // reset button list
+    searchHistoryListEl.innerHTML = "";
+
+    // get from localStorage
+    cities = JSON.parse(localStorage.getItem("cities"));
+
+    // print on page
     for (var i = 0; i < cities.length; i++) {
         console.log(">>>", cities.length);
         var oldSearchEl = document.createElement("button");
             oldSearchEl.textContent = cities[i].cityName;
             oldSearchEl.setAttribute("class" , "d-flex w-100 btn border p-2 historyBtn");
             oldSearchEl.setAttribute("type" , "submit");
-            loadSearchButtonEl.append(oldSearchEl);
+            searchHistoryListEl.append(oldSearchEl);
             // the button needs to have the cityName input
     }
 };
