@@ -204,6 +204,20 @@ var loadSearch = function() {
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
+searchHistoryListEl.addEventListener("click" , function(event) {
+    //console.log("LIST CLICKED");
+    var cityName = event.target.textContent;
+    //console.log(">>> history city name >>>" , cityName);
+
+    // reset containers to be blank to remove previous search display
+        currentWeatherContainerEl.innerHTML = "";
+        currentWeatherDetailsContainerEl.innerHTML = "";
+        forecastContainerEl.innerHTML = "";
+
+        getWeatherCurrent(cityName);
+        getWeatherForecast(cityName);
+});
+
 clearSearchHistoryEl.addEventListener("click", function() {
     localStorage.clear();
     loadSearch();
