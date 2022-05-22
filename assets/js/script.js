@@ -82,10 +82,29 @@ var getWeatherCurrent = function(cityName) {
                                 response.name
                                 var UVindex = data.current.uvi;
 
-                                // append this heading item to page
+                                // create the elements
                                 var UVindexEl = document.createElement("p");
-                                UVindexEl.textContent = "UV Index: " + UVindex;
+                                    UVindexEl.setAttribute("class" , "d-inline")
+                                    UVindexEl.textContent = "UV Index: ";
+                                var UVindexMeasurementEl = document.createElement("p");
+                                    UVindexMeasurementEl.textContent = UVindex;
+
+                                // apply color codes
+                                if (UVindex <= 2) {
+                                    UVindexMeasurementEl.setAttribute("class" , "uv-index-low d-inline")
+                                } else if (UVindex > 2 && UVindex <= 5) {
+                                    UVindexMeasurementEl.setAttribute("class" , "uv-index-moderate d-inline")
+                                } else if (UVindex > 5 && UVindex <= 7) {
+                                    UVindexMeasurementEl.setAttribute("class" , "uv-index-high d-inline")
+                                } else if (UVindex > 7 && UVindex <= 10) {
+                                    UVindexMeasurementEl.setAttribute("class" , "uv-index-vhigh d-inline")
+                                } else if (UVindex > 11) {
+                                    UVindexMeasurementEl.setAttribute("class" , "uv-index-extreme d-inline")
+                                };
+
+                                // append this to heading item page
                                 currentWeatherDetailsContainerEl.append(UVindexEl);
+                                UVindexEl.append(UVindexMeasurementEl);
                                 });
                             };
                         });

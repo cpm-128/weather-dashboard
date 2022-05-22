@@ -74,6 +74,40 @@ main {
   border-radius: var(--border-radius);
 }
 
+.uv-index-low {
+  background-color: green;
+  color: var(--light);
+  padding: 4px;
+  border-radius: var(--border-radius);
+}
+
+.uv-index-moderate {
+  background-color: yellow;
+  padding: 4px;
+  border-radius: var(--border-radius);
+}
+
+.uv-index-high {
+  background-color: orange;
+  color: var(--light);
+  padding: 4px;
+  border-radius: var(--border-radius);
+}
+
+.uv-index-vhigh {
+  background-color: red;
+  color: var(--light);
+  padding: 4px;
+  border-radius: var(--border-radius);
+}
+
+.uv-index-extreme {
+  background-color: purple;
+  color: var(--light);
+  padding: 4px;
+  border-radius: var(--border-radius);
+}
+
 /* div {
   border: 1px red solid;
 } */
