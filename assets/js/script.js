@@ -187,8 +187,8 @@ var loadSearch = function() {
     // reset button list
     searchHistoryListEl.innerHTML = "";
 
-    // get from localStorage
-    cities = JSON.parse(localStorage.getItem("cities"));
+    // get from localStorage . . . . . . this actually breaks it
+    //cities = JSON.parse(localStorage.getItem("cities"));
 
     // print on page
     for (var i = 0; i < cities.length; i++) {
