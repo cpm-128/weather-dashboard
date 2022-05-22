@@ -27,7 +27,15 @@ THEN I am again presented with current and future conditions for that city
 
 ## Deployed Application
 Live url:
+https://cpm-128.github.io/weather-dashboard/
 
 Repo url:
+https://github.com/cpm-128/weather-dashboard
 
 Screenshots:
+
+Home
+<img src="./assets/images/weather-dahsboard_screenshot.png">
+
+Search History
+<img src="./assets/images/weather-dashboard-history_screenshot.png">
