@@ -121,12 +121,11 @@ var formSubmitHandler = function(event) {
     var cityName = userCityNameEl.value.trim();
 
     if (cityName) {
-        currentWeatherContainerEl.innerHTML
-         = "";
-        currentWeatherDetailsContainerEl.innerHTML
-        ="";
-        forecastContainerEl.innerHTML
-        ="";
+
+        // reset containers to be blank to remove previous search display
+        currentWeatherContainerEl.innerHTML = "";
+        currentWeatherDetailsContainerEl.innerHTML = "";
+        forecastContainerEl.innerHTML = "";
 
         getWeatherCurrent(cityName);
         getWeatherForecast(cityName);
