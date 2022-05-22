@@ -192,7 +192,7 @@ var loadSearch = function() {
 
     // print on page
     for (var i = 0; i < cities.length; i++) {
-        console.log(">>>", cities.length);
+        // console.log(">>>", cities.length);
         var oldSearchEl = document.createElement("button");
             oldSearchEl.textContent = cities[i].cityName;
             oldSearchEl.setAttribute("class" , "d-flex w-100 btn border p-2 historyBtn");
@@ -218,7 +218,12 @@ searchHistoryListEl.addEventListener("click" , function(event) {
         getWeatherForecast(cityName);
 });
 
-clearSearchHistoryEl.addEventListener("click", function() {
-    localStorage.clear();
-    loadSearch();
-});
+// not including search button now; not working nor required
+// clearSearchHistoryEl.addEventListener("click", function() {
+//     localStorage.removeItem("cities");
+
+//     // remove the buttons from list
+//     searchHistoryListEl.removeChild;
+
+//     loadSearch();
+// });
