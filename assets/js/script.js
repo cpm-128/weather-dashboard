@@ -1,4 +1,5 @@
 var apiKey = "943c2d97f00c4a3d1e9383c1afac4cc1";
+
 var userFormEl = document.querySelector("#location-form");
 var userCityNameEl = document.querySelector("#cityName");
 var currentWeatherEntireEl = document.querySelector("#currentWeather");
@@ -11,9 +12,15 @@ var loadSearchButtonEl = document.querySelector("#searchHistoryList");
 var searchHistoryEl = document.querySelector("#searchHistory");
 var clearSearchHistoryEl = document.querySelector("#clearSearchHistory");
 
+// display dynamically defined city on page load
+document.addEventListener('DOMContentLoaded', function() {
+    var cityName = "brevard";
+    getWeatherCurrent(cityName);
+    getWeatherForecast(cityName);
+    loadSearch(cityName);
+})
 
 var getWeatherCurrent = function(cityName) {
-
     // style display box
     currentWeatherEntireEl.setAttribute("class","border");
 
@@ -114,6 +121,13 @@ var formSubmitHandler = function(event) {
     var cityName = userCityNameEl.value.trim();
 
     if (cityName) {
+        currentWeatherContainerEl.innerHTML
+         = "";
+        currentWeatherDetailsContainerEl.innerHTML
+        ="";
+        forecastContainerEl.innerHTML
+        ="";
+
         getWeatherCurrent(cityName);
         getWeatherForecast(cityName);
         userCityNameEl.value = "";
@@ -131,7 +145,7 @@ var saveSearch = function() {
 
 var loadSearch = function() {
     for (var i = 0; i < cities.length; i++) {
-        //console.log(">>>", cities.length);
+        console.log(">>>", cities.length);
         var oldSearchEl = document.createElement("button");
             oldSearchEl.textContent = cities[i].cityName;
             oldSearchEl.setAttribute("class" , "d-flex w-100 btn border p-2 historyBtn");
